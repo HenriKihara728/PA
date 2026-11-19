@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ex 01 — Pode dirigir?</title>
+  <style>
+    :root {
+      --bg1: #1e3a8a;
+      --bg2: #3b82f6;
+      --accent: #2563eb;
+      --badge-bg: #dbeafe;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      width: 100%;
+      max-width: 420px;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--badge-bg);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin: 10px 0 6px;
+      color: #1e293b;
+    }
+
+    .enunciado {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 6px 0 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    button:hover {
+      filter: brightness(.92);
+      transform: translateY(-1px);
+    }
+
+    .resposta {
+      margin-top: 20px;
+      padding: 14px;
+      background: #f8fafc;
+      border: 2px dashed var(--accent);
+      border-radius: 10px;
+      font-size: 15px;
+      text-align: center;
+      color: #1e293b;
+      min-height: 48px;
+    }
+
+    .dicas {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .dicas summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .dicas li {
+      margin: 6px 0 6px 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <span class="badge">Exercício 01 · Fácil</span>
+    <h1>🚗 Pode dirigir?</h1>
+    <p class="enunciado">No Brasil, é permitido tirar a carteira de habilitação a partir de <strong>18 anos</strong>.
+      Escreva um algoritmo que recebe a idade de uma pessoa e informa se ela já pode dirigir ou não.</p>
+
+    <label for="in-idade">Idade</label>
+    <input type="number" id="in-idade" placeholder="Ex.: 17" min="0" max="120">
+
+    <button id="btn-verificar">Verificar</button>
+
+    <div class="resposta" id="out-resposta">A resposta aparece aqui...</div>
+
+    <details class="dicas">
+      <summary>⚠️ Preciso de um empurrão?</summary>
+      <ul>
+        <li>Dica 1: pegue a idade com <code>elIdade.value</code> e converta → <code>Number(...)</code>.</li>
+        <li>Dica 2: a estrutura que resolve isso é <code>if / else</code> (igualzinho ao C++ de vocês).</li>
+        <li>Dica 3: escreva com <code>elResposta.textContent = "..."</code>.</li>
+      </ul>
+    </details>
+  </main>
+
+  <script>
+    const elIdade = document.getElementById('in-idade');
+    const elResposta = document.getElementById('out-resposta');
+    const elBotao = document.getElementById('btn-verificar');
+
+    function verificar() {
+      // ===== SUA LÓGICA COMEÇA AQUI =====
+
+      let idade = Number(elIdade.value)
+      if(idade >= 18){
+        elResposta.textContent = idade + " pode dirigir"
+        elResposta.style.color = "green"
+      } else {
+        elResposta.textContent = idade + " não pode dirigir"
+        elResposta.style.color = "red"
+      }
+
+      // ===== SUA LÓGICA TERMINA AQUI =====
+    }
+
+    elBotao.addEventListener('click', verificar);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ex 02 — Tabuada</title>
+  <style>
+    :root {
+      --bg1: #065f46;
+      --bg2: #34d399;
+      --accent: #059669;
+      --badge-bg: #d1fae5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      width: 100%;
+      max-width: 420px;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--badge-bg);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin: 10px 0 6px;
+      color: #1e293b;
+    }
+
+    .enunciado {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 6px 0 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    button:hover {
+      filter: brightness(.92);
+      transform: translateY(-1px);
+    }
+
+    .resposta {
+      margin-top: 20px;
+      padding: 16px;
+      background: #f8fafc;
+      border: 2px dashed var(--accent);
+      border-radius: 10px;
+      color: #1e293b;
+      min-height: 48px;
+    }
+
+    .resposta ul {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .resposta li {
+      padding: 4px 0;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .resposta li:last-child {
+      border-bottom: 0;
+    }
+
+    .resposta .linha {
+      color: #059669;
+      font-weight: 700;
+    }
+
+    .dicas {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .dicas summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .dicas li {
+      margin: 6px 0 6px 18px;
+    }
+
+    .dicas code {
+      background: #d1fae5;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <span class="badge">Exercício 02 · Fácil</span>
+    <h1>✖️ Tabuada da turma</h1>
+    <p class="enunciado">Receba um número e monte a <strong>tabuada dele de 1 a 10</strong> em uma lista na página.
+      O algoritmo que faz isso você já conhece: é o <code>for</code> de C++. A novidade é a casa
+      nova para a saída: uma lista (<code>ul</code>), preenchida linha por linha.</p>
+
+    <label for="in-numero">Número da tabuada</label>
+    <input type="number" id="in-numero" placeholder="Ex.: 7" min="0" max="1000">
+
+    <button id="btn-gerar">Gerar tabuada</button>
+
+    <div class="resposta">
+      <strong>A tabuada aparecerá aqui:</strong>
+      <ul id="out-lista"></ul>
+    </div>
+
+    <details class="dicas">
+      <summary>⚠️ Preciso de um empurrão?</summary>
+      <ul>
+        <li>Dica 1: pegue o número e converta → <code>Number(elNumero.value)</code>.</li>
+        <li>Dica 2: <code>for (let i = 1; i &lt;= 10; i++)</code> de reforço de memória — idêntico ao C++.</li>
+        <li>Dica 3: a cada volta do laço, <code>elLista.innerHTML += `&lt;li&gt;${n} x ${i} = ${n * i}&lt;/li&gt;`</code>.</li>
+        <li>Dica 4 (importante!): <strong>antes do laço</strong>, <code>elLista.innerHTML = "";</code> para não acumular de clique em clique.</li>
+      </ul>
+    </details>
+  </main>
+
+  <script>
+    const elNumero = document.getElementById('in-numero');
+    const elLista = document.getElementById('out-lista');
+    const elBotao = document.getElementById('btn-gerar');
+
+    function gerarTabuada() {
+      // ===== SUA LÓGICA COMEÇA AQUI =====
+
+      let numero = Number(elNumero.value)
+
+      for (let i = 0; i <= 10; i++) {
+        elLista.innerHTML += `<li> ${numero} x ${i} = ${numero * i} </li>`
+        
+      }
+
+      // ===== SUA LÓGICA TERMINA AQUI =====
+    }
+
+    elBotao.addEventListener('click', gerarTabuada);
+  </script>
+</body>
+
+</html>
