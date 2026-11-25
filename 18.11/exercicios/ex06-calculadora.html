@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ex 06 — Calculadora</title>
+<style>
+    :root { --bg1: #334155; --bg2: #64748b; --accent: #4f46e5; --badge-bg: #e0e7ff; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+    body { min-height: 100vh; display: grid; place-items: center; background: linear-gradient(135deg, var(--bg1), var(--bg2)); padding: 20px; }
+    .card { background: #fff; width: 100%; max-width: 430px; padding: 32px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+    .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: #4338ca; background: var(--badge-bg); padding: 6px 12px; border-radius: 999px; }
+    h1 { font-size: 24px; margin: 10px 0 6px; color: #1e293b; }
+    .enunciado { font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 20px; }
+    .grade { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+    label { display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 4px; }
+    input, select { width: 100%; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 15px; outline: none; background: #fff; }
+    input:focus, select:focus { border-color: var(--accent); }
+    select { font-weight: 700; text-align: center; }
+    button { width: 100%; padding: 13px; border: 0; border-radius: 10px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; transition: .2s; }
+    button:hover { filter: brightness(.92); transform: translateY(-1px); }
+    .resposta { margin-top: 20px; padding: 18px; background: #f8fafc; border: 2px dashed var(--accent); border-radius: 10px; text-align: center; font-size: 16px; color: #1e293b; min-height: 52px; }
+    .resposta strong { font-size: 22px; color: #4f46e5; }
+    .aviso { color: #dc2626; font-weight: 700; }
+    .dicas { margin-top: 18px; font-size: 13px; color: #64748b; }
+    .dicas summary { cursor: pointer; font-weight: 600; }
+    .dicas li { margin: 6px 0 6px 18px; }
+    .dicas code { background: #e0e7ff; padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<main class="card">
+    <span class="badge">Exercício 06 · Moderada</span>
+    <h1>🧮 Calculadora das 4 operações</h1>
+    <p class="enunciado">A calculadora clássica de atividade: recebe <strong>dois números</strong> e a <strong>operação</strong>
+        (+, −, ×, ÷) e mostra o resultado. Atenção à divisão: <strong>divisão por zero não pode acontecer</strong> —
+        nesse caso, mostre a mensagem de erro da tela, não deixe o app quebrar.</p>
+
+    <div class="grade">
+        <div>
+            <label for="in-n1">Número 1</label>
+            <input type="number" id="in-n1" placeholder="Ex.: 10">
+        </div>
+        <div>
+            <label for="in-n2">Número 2</label>
+            <input type="number" id="in-n2" placeholder="Ex.: 4">
+        </div>
+    </div>
+
+    <label for="in-op">Operação</label>
+    <select id="in-op">
+        <option value="soma">➕ Soma</option>
+        <option value="sub">➖ Subtração</option>
+        <option value="mult">✖️ Multiplicação</option>
+        <option value="div">➗ Divisão</option>
+    </select>
+
+    <button id="btn-calcular">Calcular</button>
+
+    <div class="resposta" id="out-resposta">O resultado aparece aqui...</div>
+
+    <details class="dicas">
+        <summary>⚠️ Preciso de um empurrão?</summary>
+        <ul>
+            <li>Dica 1: a operação chega do <code>option</code> → <code>elOp.value</code> devolve "soma", "sub", "mult" ou "div".</li>
+            <li>Dica 2: esse é O exercício apropriado para o <code>switch</code> de vocês (do C++) — cada <code>case</code> é uma operação.</li>
+            <li>Dica 3: antes de dividir, verifique: <code>if (n2 === 0) ... else ...</code>.</li>
+            <li>Dica 4: dentro do <code>div</code>, mostre <code>"Não é possível dividir por zero!"</code> com o estilo <code>.aviso</code> manuf.</li>
+        </ul>
+    </details>
+</main>
+
+<script>
+    const elN1 = document.getElementById('in-n1');
+    const elN2 = document.getElementById('in-n2');
+    const elOp = document.getElementById('in-op');
+    const elResposta = document.getElementById('out-resposta');
+    const elBotao = document.getElementById('btn-calcular');
+
+    function calcular() {
+        // ===== SUA LÓGICA COMEÇA AQUI =====
+
+        let n1 = Number(elN1.value);
+        let n2 = Number(elN2.value);
+
+        if (elOp.value === "soma") {
+            elResposta.textContent = n1 + n2;
+        } else if (elOp.value === "sub") {
+            elResposta.textContent = n1 - n2;
+        } else if (elOp.value === "mult") {
+            elResposta.textContent = n1 * n2;
+        } else if (elOp.value === "div") {
+            if (n2 === 0) {
+                elResposta.textContent = "erro!";
+                elResposta.classList.remove("aviso");
+                elResposta.style.color = "red"
+            } else {
+                elResposta.textContent = n1 / n2;
+                elResposta.classList.remove("aviso");
+            }
+        }
+
+        // ===== SUA LÓGICA TERMINA AQUI =====
+    }
+
+    elBotao.addEventListener('click', calcular);
+</script>
+</body>
+</html>

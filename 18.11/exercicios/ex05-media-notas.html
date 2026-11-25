@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ex 05 — Média das notas</title>
+  <style>
+    :root {
+      --bg1: #be185d;
+      --bg2: #fb7185;
+      --accent: #e11d48;
+      --badge-bg: #ffe4e6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      width: 100%;
+      max-width: 430px;
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--badge-bg);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin: 10px 0 6px;
+      color: #1e293b;
+    }
+
+    .enunciado {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .grade {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 6px 0 0;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 13px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    button:hover {
+      filter: brightness(.92);
+      transform: translateY(-1px);
+    }
+
+    .resposta {
+      margin-top: 20px;
+      padding: 18px;
+      background: #f8fafc;
+      border: 2px dashed var(--accent);
+      border-radius: 10px;
+      text-align: center;
+      color: #1e293b;
+    }
+
+    .media {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .situacao {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      background: #ea580c;
+    }
+
+    .situacao.aprovado {
+      background: #059669;
+    }
+
+    .resposta .placeholder {
+      color: #94a3b8;
+      font-size: 15px;
+    }
+
+    .dicas {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #64748b;
+    }
+
+    .dicas summary {
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .dicas li {
+      margin: 6px 0 6px 18px;
+    }
+
+    .dicas code {
+      background: #ffe4e6;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <span class="badge">Exercício 05 · Moderada</span>
+    <h1>📚 Média e situação</h1>
+    <p class="enunciado">Uma disciplina com três provas: média <strong>maior ou igual a 6,0</strong> significa
+      <strong>aprovado</strong>, abaixo disso <strong>reprovado</strong>. Receba as <strong>três notas</strong>,
+      calcule a <strong>média numérica</strong> (uma casa decimal) e a <strong>situação</strong>. Aqui são
+      dois campos de saída diferentes: o número e a situação.
+    </p>
+
+    <div class="grade">
+      <div>
+        <label for="in-nota1">Nota 1 (0 a 10)</label>
+        <input type="number" id="in-nota1" step="0.1" min="0" max="10" placeholder="Ex.: 8">
+      </div>
+      <div>
+        <label for="in-nota2">Nota 2 (0 a 10)</label>
+        <input type="number" id="in-nota2" step="0.1" min="0" max="10" placeholder="Ex.: 6">
+      </div>
+      <div>
+        <label for="in-nota3">Nota 3 (0 a 10)</label>
+        <input type="number" id="in-nota3" step="0.1" min="0" max="10" placeholder="Ex.: 9">
+      </div>
+    </div>
+
+    <button id="btn-calcular">Calcular média</button>
+
+    <div class="resposta" id="out-resposta">
+      <div class="media" id="out-media">--</div>
+      <div><span class="situacao" id="out-situacao"></span></div>
+    </div>
+
+    <details class="dicas">
+      <summary>⚠️ Preciso de um empurrão?</summary>
+      <ul>
+        <li>Dica 1: para receber 3 valores: <code>const n1 = Number(elNota1.value);</code> e iguais para n2 e n3.</li>
+        <li>Dica 2: média num <del>0</del>1 casa: <code>(n1 + n2 + n3) / 3</code> + <code>.toFixed(1)</code>.</li>
+        <li>Dica 3: a situação entra no <code>elSituacao.textContent</code>... e o verde/vermelho? Para trocar cor
+          use <code>classList.add("aprovado")</code> no caso certo e <code>classList.remove("aprovado")</code> no caminho contrário.</li>
+      </ul>
+    </details>
+  </main>
+
+  <script>
+    const elNota1 = document.getElementById('in-nota1');
+    const elNota2 = document.getElementById('in-nota2');
+    const elNota3 = document.getElementById('in-nota3');
+    const elMedia = document.getElementById('out-media');
+    const elSituacao = document.getElementById('out-situacao');
+    const elBotao = document.getElementById('btn-calcular');
+
+    function calcular() {
+      // ===== SUA LÓGICA COMEÇA AQUI =====
+      
+      let n1 = Number(elNota1.value);
+      let n2 = Number(elNota2.value);
+      let n3 = Number(elNota3.value);
+
+      let media = (n1 + n2 + n3) / 3;
+
+      elMedia.textContent = media.toFixed(1);
+
+      if (media >= 6) {
+        elSituacao.textContent = "aprovado";
+        elSituacao.classList.add("aprovado");
+      } else {
+        elSituacao.textContent = "reprovado";
+        elSituacao.classList.remove("aprovado");
+      }
+
+      // ===== SUA LÓGICA TERMINA AQUI =====
+    }
+
+    elBotao.addEventListener('click', calcular);
+  </script>
+</body>
+
+</html>

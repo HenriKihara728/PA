@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ex 08 — Maior de três números</title>
+<style>
+    :root { --bg1: #b45309; --bg2: #fbbf24; --accent: #d97706; --badge-bg: #fef3c7; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+    body { min-height: 100vh; display: grid; place-items: center; background: linear-gradient(135deg, var(--bg1), var(--bg2)); padding: 20px; }
+    .card { background: #fff; width: 100%; max-width: 420px; padding: 32px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+    .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: #92400e; background: var(--badge-bg); padding: 6px 12px; border-radius: 999px; }
+    h1 { font-size: 24px; margin: 10px 0 6px; color: #1e293b; }
+    .enunciado { font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 20px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    label { font-size: 13px; font-weight: 600; color: #334155; }
+    input { width: 100%; padding: 12px 14px; margin: 6px 0 0; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 15px; outline: none; }
+    input:focus { border-color: var(--accent); }
+    button { width: 100%; margin-top: 18px; padding: 13px; border: 0; border-radius: 10px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; transition: .2s; }
+    button:hover { filter: brightness(.92); transform: translateY(-1px); }
+    .resposta { margin-top: 20px; padding: 18px; background: #fffbeb; border: 2px dashed var(--accent); border-radius: 10px; font-size: 16px; text-align: center; color: #1e293b; min-height: 52px; }
+    .resposta strong { font-size: 22px; color: #b45309; }
+    .dicas { margin-top: 18px; font-size: 13px; color: #64748b; }
+    .dicas summary { cursor: pointer; font-weight: 600; }
+    .dicas li { margin: 6px 0 6px 18px; }
+</style>
+</head>
+<body>
+<main class="card">
+    <span class="badge">Exercício 08 · Moderada</span>
+    <h1>🏔️ O maior de três</h1>
+    <p class="enunciado">Receba <strong>três números</strong> diferentes e diga qual deles é o maior.
+        Bônus de interpretação: também vale mostrar se os números digitados foram iguais entre si.</p>
+
+    <div class="grid">
+        <div>
+            <label for="in-a">Número A</label>
+            <input type="number" id="in-a" placeholder="Ex.: 7">
+        </div>
+        <div>
+            <label for="in-b">Número B</label>
+            <input type="number" id="in-b" placeholder="Ex.: 3">
+        </div>
+        <div>
+            <label for="in-c">Número C</label>
+            <input type="number" id="in-c" placeholder="Ex.: 12">
+        </div>
+    </div>
+
+    <button id="btn-achar">Descobrir o maior</button>
+
+    <div class="resposta" id="out-resposta">O maior número é...</div>
+
+    <details class="dicas">
+        <summary>⚠️ Preciso de um empurrão?</summary>
+        <ul>
+            <li>Dica 1: trate os três como <code>const a = Number(...)</code>, <code>const b = ...</code>, <code>const c = ...</code>.</li>
+            <li>Dica 2: "acumular o maior": comece uma variável <code>let maior = a;</code> e vá trocando se <code>b > maior</code>. É o mesmo esquema que vocês usavam em C++.</li>
+            <li>Dica 3: para o bônus, um <code>if</code> com <code>&amp;&amp;</code> checa se são iguais.</li>
+        </ul>
+    </details>
+</main>
+
+<script>
+    const elA = document.getElementById('in-a');
+    const elB = document.getElementById('in-b');
+    const elC = document.getElementById('in-c');
+    const elResposta = document.getElementById('out-resposta');
+    const elBotao = document.getElementById('btn-achar');
+
+    function acharMaior() {
+        // ===== SUA LÓGICA COMEÇA AQUI =====
+
+        const a = Number(elA.value);
+        const b = Number(elB.value);
+        const c = Number(elC.value);
+
+        let maior = a;
+
+        if (b > maior) {
+            maior = b
+        }
+
+        if (c > maior) {
+            maior = c
+        }
+
+        if (a === b && b === c) {
+            elResposta.textContent = "os três números são iguais!"
+        } else {
+            elResposta.textContent = "o maior número é " + maior;
+        }
+
+        // ===== SUA LÓGICA TERMINA AQUI =====
+    }
+
+    elBotao.addEventListener('click', acharMaior);
+</script>
+</body>
+</html>

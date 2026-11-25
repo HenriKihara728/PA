@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ex 07 — Conversor de temperatura</title>
+<style>
+    :root { --bg1: #0e7490; --bg2: #22d3ee; --accent: #0891b2; --badge-bg: #cffafe; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+    body { min-height: 100vh; display: grid; place-items: center; background: linear-gradient(135deg, var(--bg1), var(--bg2)); padding: 20px; }
+    .card { background: #fff; width: 100%; max-width: 420px; padding: 32px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+    .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--accent); background: var(--badge-bg); padding: 6px 12px; border-radius: 999px; }
+    h1 { font-size: 24px; margin: 10px 0 6px; color: #1e293b; }
+    .enunciado { font-size: 14px; color: #64748b; line-height: 1.5; margin-bottom: 20px; }
+    label { font-size: 13px; font-weight: 600; color: #334155; }
+    input, select { width: 100%; padding: 12px 14px; margin: 6px 0 16px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 15px; outline: none; background: #fff; }
+    input:focus, select:focus { border-color: var(--accent); }
+    button { width: 100%; padding: 13px; border: 0; border-radius: 10px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; transition: .2s; }
+    button:hover { filter: brightness(.92); transform: translateY(-1px); }
+    .resposta { margin-top: 20px; padding: 18px; background: #f8fafc; border: 2px dashed var(--accent); border-radius: 10px; font-size: 16px; text-align: center; color: #1e293b; min-height: 52px; }
+    .dicas { margin-top: 18px; font-size: 13px; color: #64748b; }
+    .dicas summary { cursor: pointer; font-weight: 600; }
+    .dicas li { margin: 6px 0 6px 18px; }
+</style>
+</head>
+<body>
+<main class="card">
+    <span class="badge">Exercício 07 · Moderada</span>
+    <h1>🌡️ Conversor de temperatura</h1>
+    <p class="enunciado">Conversões clássicas:
+        <br><strong>Celsius → Fahrenheit:</strong> <code>F = C × 1.8 + 32</code>
+        <br><strong>Fahrenheit → Celsius:</strong> <code>C = (F − 32) ÷ 1.8</code>
+        <br>Receba a temperatura, o sentido da conversão e mostre o resultado com <strong>não mais que uma casa decimal</strong>.</p>
+
+    <label for="in-temp">Temperatura</label>
+    <input type="number" id="in-temp" step="0.1" placeholder="Ex.: 30">
+
+    <label for="in-sentido">Converter de / para</label>
+    <select id="in-sentido">
+        <option value="cf">Celsius → Fahrenheit</option>
+        <option value="fc">Fahrenheit → Celsius</option>
+    </select>
+
+    <button id="btn-convertar">Converter</button>
+
+    <div class="resposta" id="out-resposta">O resultado aparece aqui...</div>
+
+    <details class="dicas">
+        <summary>⚠️ Preciso de um empurrão?</summary>
+        <ul>
+            <li>Dica 1: capture o sentido com <code>elSentido.value</code> → devolve <code>"cf"</code> ou <code>"fc"</code> (é um switch perfeito, ou dois if).</li>
+            <li>Dica 2: o valor convertido saiu "cheio de decimais"? formate com <code>.toFixed(1)</code>.</li>
+            <li>Dica 3: no enunciado aparece &minus; (menos) — no código use <code>-</code>; e ponto, não vírgula.</li>
+        </ul>
+    </details>
+</main>
+
+<script>
+    const elTemp = document.getElementById('in-temp');
+    const elSentido = document.getElementById('in-sentido');
+    const elResposta = document.getElementById('out-resposta');
+    const elBotao = document.getElementById('btn-convertar');
+
+    function converter() {
+        // ===== SUA LÓGICA COMEÇA AQUI =====
+
+        let temperatura = Number(elTemp.value);
+
+        if (elSentido.value === "cf") {
+            let resultado = temperatura * 1.8 + 32;
+            elResposta.textContent = resultado.toFixed(1) + " °F";
+        } else {
+            let resultado = (temperatura - 32) / 1.8;
+            elResposta.textContent = resultado.toFixed(1) + " °C";
+        }
+
+        // ===== SUA LÓGICA TERMINA AQUI =====
+    }
+
+    elBotao.addEventListener('click', converter);
+</script>
+</body>
+</html>
