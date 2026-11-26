@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 2 — Exercícios: Funções, Objetos e Listas</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --texto: #e2e8f0;
+      --verde: #22c55e;
+      --vermelho: #ef4444;
+      --amarelo: #eab308;
+      --azul: #38bdf8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--texto);
+      padding: 24px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    header h1 {
+      color: var(--azul);
+      font-size: 1.6rem;
+    }
+
+    header p {
+      color: #94a3b8;
+      margin-top: 6px;
+    }
+
+    .como-usar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--amarelo);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+
+    .como-usar code {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      color: var(--azul);
+    }
+
+    .placar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .exercicio {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+    }
+
+    .exercicio.pass {
+      border-left: 4px solid var(--verde);
+    }
+
+    .exercicio.fail {
+      border-left: 4px solid var(--vermelho);
+    }
+
+    .exercicio h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .exercicio .enunciado {
+      color: #cbd5e1;
+      font-size: 0.92rem;
+      margin-bottom: 10px;
+    }
+
+    .exercicio .enunciado code {
+      background: #0f172a;
+      border: 1px solid var(--border);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      color: var(--azul);
+      font-size: 0.85rem;
+    }
+
+    .status {
+      font-weight: bold;
+    }
+
+    .pass .status {
+      color: var(--verde);
+    }
+
+    .fail .status {
+      color: var(--vermelho);
+    }
+
+    .detalhe {
+      font-family: Consolas, monospace;
+      font-size: 0.82rem;
+      background: #0f172a;
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-top: 8px;
+      color: #94a3b8;
+      white-space: pre-wrap;
+    }
+
+    .dica {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-top: 6px;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 0.85rem;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>📘 Aula 2 — Funções, Objetos e Listas</h1>
+      <p>10 exercícios com correção automática · Programação de Algoritmos</p>
+    </header>
+
+    <div class="como-usar">
+      <strong>Como usar:</strong> abra este arquivo no editor (VS Code), role até o bloco
+      <code>&lt;script id="respostas"&gt;</code> e implemente cada função. Salve (Ctrl+S) e recarregue a
+      página no navegador (F5) — o corredor de testes valida tudo sozinho. ✅ = correto · ❌ = errado
+      (mostra o que sua função devolveu). O console do navegador (F12) também mostra o resultado detalhado.
+    </div>
+
+    <div class="placar">🏆 Placar: <span id="placar">...</span></div>
+    <div id="resultados"></div>
+
+    <footer>Referência de teoria: <strong>conceitos-funcoes-objetos-listas.md</strong> (mesma pasta) · Métodos de array e recursividade ficam para as próximas aulas.</footer>
+  </div>
+
+  <!-- ======================================================================
+     📝 SUAS RESPOSTAS — EDITE APENAS ESTE BLOCO!
+     Cada exercício tem um "esqueleto" (stub) pronto. Substitua o corpo
+     das funções. NÃO renomeie as funções, senão os testes quebram.
+     Regras da aula: use apenas funções, objetos, listas, if, for/while,
+     acumuladores e push. SEM métodos de array (map/filter/reduce/sort)
+     e SEM recursividade.
+     ====================================================================== -->
+  <script id="respostas">
+    // =====================================================================
+    // EXERCÍCIO 1 — media(a, b, c)
+    // Assinatura: media(number, number, number) → number
+    // Devolve a média aritmética dos três números.
+    // Ex.: media(2, 4, 6) → 4
+    // =====================================================================
+    function media(a, b, c) {
+      let mediano = (a + b + c) / 3
+      return mediano
+    }
+
+    // =====================================================================
+    // EXERCÍCIO 2 — ehPar(n)
+    // Assinatura: ehPar(number) → boolean
+    // Devolve true se o número for par, false caso contrário.
+    // Dica: operador % (resto da divisão).
+    // Ex.: ehPar(10) → true · ehPar(7) → false
+    // =====================================================================
+    function ehPar(n) {
+
+      let par = 0
+      let impar = 0
+
+      if (n % 2 === 0) {
+        n = true
+      } else {
+        n = false
+      }
+      
+      return n
+    }
+//tira todas as respostas para mim das funções, para que eu possa fazer do zero, sem ver as respostas.
+
+    // =====================================================================
+    // EXERCÍCIO 3 — situacaoAluno(media)
+    // Assinatura: situacaoAluno(number) → string
+    // Devolve "APROVADO" se media >= 6, "RECUPERAÇÃO" se media >= 4,
+    // e "REPROVADO" nos demais casos.
+    // Ex.: situacaoAluno(7) → "APROVADO" · situacaoAluno(5) → "RECUPERAÇÃO"
+    // =====================================================================
+    function situacaoAluno(mediaFinal) {
+     // TODO: implemente
+
+      if (mediaFinal >= 6) {
+        return "APROVADO"
+
+      } else if (mediaFinal >= 4) {
+        return "RECUPERAÇÃO"
+
+      } else if (mediaFinal < 4) {
+        return "REPROVADO"
+      }
+    }
+
+    // =====================================================================
+    // EXERCÍCIO 4 — somarLista(numeros)
+    // Assinatura: somarLista(number[]) → number
+    // Devolve a soma de TODOS os números da lista.
+    // Use o PADRÃO ACUMULADOR com for...of (proibido usar .reduce!).
+    // Ex.: somarLista([1, 2, 3, 4]) → 10
+    // =====================================================================
+    function somarLista(numeros = []) {
+      // TODO: implemente
+      
+        let soma = 0
+
+        for (let i = 0; i < numeros.length; i++) {
+          soma += numeros[i];
+        }
+        return soma
+    }
+
+    // =====================================================================
+    // EXERCÍCIO 5 — mediaLista(notas)
+    // Assinatura: mediaLista(number[]) → number
+    // Devolve a média das notas. ATENÇÃO: se a lista estiver VAZIA,
+    // devolva 0 (dividir por zero daria NaN!).
+    // Ex.: mediaLista([8, 6, 10]) → 8 · mediaLista([]) → 0
+    // =====================================================================
+    function mediaLista(notas = []) {
+      // TODO: implemente
+
+        let mediaLista = [];
+        let soma = 0;
+
+          if (notas.length === 0) {
+            return 0
+          }
+
+          for (let i = 0; i < notas.length; i++) {
+            soma += notas[i];
+          }
+
+        return Number((soma / notas.length).toFixed(1));
+          
+        }
+
+    // =====================================================================
+    // EXERCÍCIO 6 — contarAcimaDe(lista, limite)
+    // Assinatura: contarAcimaDe(number[], number) → number
+    // Devolve QUANTOS itens da lista são maiores que o limite.
+    // Use o PADRÃO CONTADOR.
+    // Ex.: contarAcimaDe([5, 10, 15, 20], 10) → 2
+    // =====================================================================
+    function contarAcimaDe(lista = [], limite) {
+      // TODO: implemente
+   
+      let contador = 0;
+
+      for (let qtd = 0; qtd < lista.length; qtd++) {
+        if (lista[qtd] > limite){
+          contador++
+        }
+      }
+
+      return contador
+    }
+
+    // =====================================================================
+    // EXERCÍCIO 7 — maiorValor(lista)
+    // Assinatura: maiorValor(number[]) → number
+    // Devolve o MAIOR número da lista. Use o PADRÃO CAMPEÃO
+    // (comece com lista[0] e compare item por item).
+    // Considere que a lista sempre terá pelo menos 1 item.
+    // Ex.: maiorValor([3, 9, 4, 7]) → 9
+    // =====================================================================
+    function maiorValor(lista = []) {
+
+      let maior = lista[0]
+
+      for (let i = 0; i < lista.length; i++) {
+        if (lista[i] > maior) {
+          
+        }
+        
+      }
+
+    }
+
+    // =====================================================================
+    // EXERCÍCIO 8 — inverterLista(lista)
+    // Assinatura: inverterLista(any[]) → any[]
+    // Devolve uma NOVA lista com os itens na ordem inversa.
+    // PROIBIDO usar .reverse() — use loop + push montando uma lista nova.
+    // Ex.: inverterLista([1, 2, 3]) → [3, 2, 1]
+    // =====================================================================
+    function inverterLista(lista = []) {
+     
+    }
+
+    // =====================================================================
+    // EXERCÍCIO 9 — OBJETO aluno
+    // Crie o objeto literal `aluno` com:
+    //   - propriedade nome (string, à sua escolha)
+    //   - propriedade notas (lista com 3 números)
+    //   - método media() que devolve a média das PRÓPRIAS notas usando this
+    // Ex.: aluno.media() → número (a média das notas do próprio objeto)
+    // ATENÇÃO: o teste cria uma CÓPIA do seu objeto e troca as notas —
+    // seu método deve funcionar para QUALQUER lista de notas. Use this!
+    // =====================================================================
+    const aluno = {
+      // TODO: implemente (nome, notas e método media)
+    
+    };
+
+    // =====================================================================
+    // EXERCÍCIO 10 — fizzBuzz(n)
+    // Assinatura: fizzBuzz(number) → string[]
+    // Devolve uma lista com os números de 1 até n, mas:
+    //   - múltiplo de 3 (só) → "Fizz"
+    //   - múltiplo de 5 (só) → "Buzz"
+    //   - múltiplo de 3 E 5  → "FizzBuzz"
+    // Use loop + if + push. Clássico absoluto de entrevistas!
+    // Ex.: fizzBuzz(5) → [1, 2, "Fizz", 4, "Buzz"]
+    // =====================================================================
+    function fizzBuzz(n) {
+      // TODO: implemente
+     
+    }
+  </script>
+
+  <!-- ======================================================================
+     🤖 CORRETOR AUTOMÁTICO — NÃO PRECISA MEXER DAQUI PARA BAIXO
+     ====================================================================== -->
+  <script>
+    (function() {
+      "use strict";
+
+      // Comparação profunda: números, strings, listas e objetos simples
+      function iguais(a, b) {
+        return JSON.stringify(a) === JSON.stringify(b);
+      }
+
+      const testes = [{
+          nome: "1. media(a, b, c)",
+          dica: "Média aritmética = soma ÷ quantidade. Parênteses importam!",
+          casos: [{
+              chamar: () => media(2, 4, 6),
+              esperado: 4
+            },
+            {
+              chamar: () => media(10, 10, 10),
+              esperado: 10
+            },
+            {
+              chamar: () => media(5, 7, 9),
+              esperado: 7
+            },
+            {
+              chamar: () => media(0, 0, 3),
+              esperado: 1
+            }
+          ]
+        },
+        {
+          nome: "2. ehPar(n)",
+          dica: "n % 2 === 0 significa 'resto da divisão por 2 é zero'.",
+          casos: [{
+              chamar: () => ehPar(10),
+              esperado: true
+            },
+            {
+              chamar: () => ehPar(7),
+              esperado: false
+            },
+            {
+              chamar: () => ehPar(0),
+              esperado: true
+            },
+            {
+              chamar: () => ehPar(1),
+              esperado: false
+            }
+          ]
+        },
+        {
+          nome: "3. situacaoAluno(media)",
+          dica: "Três faixas: >= 6 APROVADO, >= 4 RECUPERAÇÃO, senão REPROVADO. Ordem dos ifs importa!",
+          casos: [{
+              chamar: () => situacaoAluno(7),
+              esperado: "APROVADO"
+            },
+            {
+              chamar: () => situacaoAluno(6),
+              esperado: "APROVADO"
+            },
+            {
+              chamar: () => situacaoAluno(5),
+              esperado: "RECUPERAÇÃO"
+            },
+            {
+              chamar: () => situacaoAluno(4),
+              esperado: "RECUPERAÇÃO"
+            },
+            {
+              chamar: () => situacaoAluno(3.9),
+              esperado: "REPROVADO"
+            }
+          ]
+        },
+        {
+          nome: "4. somarLista(numeros)",
+          dica: "PADRÃO ACUMULADOR: let soma = 0; depois for...of somando item a item.",
+          casos: [{
+              chamar: () => somarLista([1, 2, 3, 4]),
+              esperado: 10
+            },
+            {
+              chamar: () => somarLista([100]),
+              esperado: 100
+            },
+            {
+              chamar: () => somarLista([]),
+              esperado: 0
+            },
+            {
+              chamar: () => somarLista([7.5, 8, 6.9]),
+              esperado: 22.4
+            }
+          ]
+        },
+        {
+          nome: "5. mediaLista(notas)",
+          dica: "Guarde a média da soma... mas trate a lista vazia ANTES de dividir por zero!",
+          casos: [{
+              chamar: () => mediaLista([8, 6, 10]),
+              esperado: 8
+            },
+            {
+              chamar: () => mediaLista([7.5, 8, 6.9]),
+              esperado: 7.5
+            },
+            {
+              chamar: () => mediaLista([]),
+              esperado: 0
+            },
+            {
+              chamar: () => mediaLista([10, 5]),
+              esperado: 7.5
+            }
+          ]
+        },
+        {
+          nome: "6. contarAcimaDe(lista, limite)",
+          dica: "PADRÃO CONTADOR: let qtd = 0; if (item > limite) qtd++;  (maior, não maior-igual)",
+          casos: [{
+              chamar: () => contarAcimaDe([5, 10, 15, 20], 10),
+              esperado: 2
+            },
+            {
+              chamar: () => contarAcimaDe([1, 2, 3], 100),
+              esperado: 0
+            },
+            {
+              chamar: () => contarAcimaDe([], 5),
+              esperado: 0
+            },
+            {
+              chamar: () => contarAcimaDe([10, 11], 10),
+              esperado: 1
+            }
+          ]
+        },
+        {
+          nome: "7. maiorValor(lista)",
+          dica: "PADRÃO CAMPEÃO: let maior = lista[0]; troque o campeão quando achar alguém maior.",
+          casos: [{
+              chamar: () => maiorValor([3, 9, 4, 7]),
+              esperado: 9
+            },
+            {
+              chamar: () => maiorValor([1, 2, 3, 4, 5]),
+              esperado: 5
+            },
+            {
+              chamar: () => maiorValor([-5, -2, -10]),
+              esperado: -2
+            },
+            {
+              chamar: () => maiorValor([42]),
+              esperado: 42
+            }
+          ]
+        },
+        {
+          nome: "8. inverterLista(lista)",
+          dica: "Monte uma lista nova com push. Percorra de trás pra frente (for clássico) ou use for...of + unshift.",
+          casos: [{
+              chamar: () => inverterLista([1, 2, 3]),
+              esperado: [3, 2, 1]
+            },
+            {
+              chamar: () => inverterLista(["a", "b"]),
+              esperado: ["b", "a"]
+            },
+            {
+              chamar: () => inverterLista([7]),
+              esperado: [7]
+            },
+            {
+              chamar: () => inverterLista([]),
+              esperado: []
+            },
+            {
+              chamar: () => inverterLista([1, 2, 3, 4, 5]),
+              esperado: [5, 4, 3, 2, 1]
+            }
+          ]
+        },
+        {
+          nome: "9. objeto aluno com método media()",
+          dica: "Dentro do método, acesse this.notas com o PADRÃO ACUMULADOR. Nunca escreva as notas 'na mão' dentro do método!",
+          casos: [{
+              chamar: () => aluno.media(),
+              esperado: 8
+            },
+            {
+              chamar: () => {
+                // Teste anti-fraude: copia o objeto e troca as notas.
+                // Se o método está hard-coded, vai falhar aqui.
+                const clone = {
+                  ...aluno
+                };
+                clone.notas = [10, 9, 8, 7];
+                return clone.media();
+              },
+              esperado: 8.5
+            }
+          ]
+        },
+        {
+          nome: "10. fizzBuzz(n)",
+          dica: "Teste PRIMEIRO o múltiplo de 3 E 5 (% 15 === 0), depois 3, depois 5. Ordem dos ifs importa!",
+          casos: [{
+              chamar: () => fizzBuzz(5),
+              esperado: [1, 2, "Fizz", 4, "Buzz"]
+            },
+            {
+              chamar: () => fizzBuzz(15),
+              esperado: [1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz", 11, "Fizz", 13, 14, "FizzBuzz"]
+            },
+            {
+              chamar: () => fizzBuzz(3),
+              esperado: [1, 2, "Fizz"]
+            },
+            {
+              chamar: () => fizzBuzz(1),
+              esperado: [1]
+            }
+          ]
+        }
+      ];
+
+      const resultadosEl = document.getElementById("resultados");
+      const placarEl = document.getElementById("placar");
+      let acertos = 0;
+      let quebrados = 0;
+
+      testes.forEach(function(teste) {
+        const card = document.createElement("div");
+        card.className = "exercicio";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = teste.nome;
+        card.appendChild(titulo);
+
+        const enunciado = document.createElement("p");
+        enunciado.className = "enunciado";
+        enunciado.textContent = teste.dica;
+        card.appendChild(enunciado);
+
+        const status = document.createElement("p");
+        status.className = "status";
+        card.appendChild(status);
+
+        const detalhe = document.createElement("div");
+        detalhe.className = "detalhe";
+        card.appendChild(detalhe);
+
+        try {
+          let tudoOk = true;
+          let mensagens = [];
+
+          teste.casos.forEach(function(caso, i) {
+            let obtido;
+            try {
+              obtido = caso.chamar();
+            } catch (erro) {
+              tudoOk = false;
+              mensagens.push("Caso " + (i + 1) + ": ERRO → " + erro.message);
+              return;
+            }
+
+            if (iguais(obtido, caso.esperado)) {
+              mensagens.push("Caso " + (i + 1) + ": ✅ " + JSON.stringify(caso.esperado));
+            } else {
+              tudoOk = false;
+              mensagens.push(
+                "Caso " + (i + 1) + ": ❌ esperado " + JSON.stringify(caso.esperado) +
+                " · sua função devolveu " + JSON.stringify(obtido)
+              );
+            }
+          });
+
+          detalhe.textContent = mensagens.join("\n");
+
+          if (tudoOk) {
+            acertos++;
+            status.textContent = "✅ PASSOU";
+            card.classList.add("pass");
+            console.log("%c✅ " + teste.nome + " — PASSOU", "color: #22c55e; font-weight: bold");
+          } else {
+            status.textContent = "❌ FALHOU";
+            card.classList.add("fail");
+            console.log("%c❌ " + teste.nome + " — FALHOU", "color: #ef4444; font-weight: bold");
+            console.log(detalhe.textContent);
+          }
+        } catch (erro) {
+          quebrados++;
+          status.textContent = "💥 QUEBROU (erro no teste)";
+          card.classList.add("fail");
+          detalhe.textContent = erro.message;
+          console.error("💥 " + teste.nome + ": " + erro.message);
+        }
+
+        resultadosEl.appendChild(card);
+      });
+
+      const total = testes.length;
+      placarEl.textContent = acertos + " / " + total + (acertos === total ? " — TUDO CERTO! 🎉" : " — continue tentando! 💪");
+      console.log("🏆 PLACAR: " + acertos + "/" + total);
+    })();
+  </script>
+</body>
+
+</html>
